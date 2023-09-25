@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    background-color: #1f2937;
+    flex: 1;
+}
+
+.info {
+    flex: 1;
+}
+
+.quote {
+    background-color: #e5e7eb;
+    flex: 1;
+}
+
+.action {
+    background-color: #3882f6;
+    flex: 1;
+}
+
+.footer {
+
+}
