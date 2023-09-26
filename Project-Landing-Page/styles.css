@@ -111,7 +111,7 @@ li {
 
 .quote-section {
     background-color: #e5e7eb;
-    padding: 100px 25%;
+    padding: 50px 25%;
     flex: 1 0 300px;
     display: flex;
     flex-direction: column;
@@ -134,10 +134,21 @@ li {
 
 .action {
     flex: 1;
+    padding: 100px 15%;
+    color: white;
 }
 
-.action_box {
+.action-box {
     background-color: #3882f6;
+    border-radius: 5px;
+    padding: 50px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.action-box-left h3, p {
+    margin: 0 0 5px 0;
 }
 
 button {
@@ -146,6 +157,12 @@ button {
     color: #e5e7eb;
     padding: 5px 20px;
     border: none;
+}
+
+.sign-up-button {
+    padding: 5px 30px;
+    font-size: 18px;
+    border: 2px solid white;
 }
 
 .footer {
