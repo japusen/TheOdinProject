@@ -109,9 +109,27 @@ li {
     border-radius: 5px;
 }
 
-.quote {
+.quote-section {
     background-color: #e5e7eb;
-    flex: 1;
+    padding: 100px 25%;
+    flex: 1 0 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote {
+    margin: 0;
+    font-size: 36px;
+    font-weight: light-italic;
+    color: #1f2937;
+}
+
+.author {
+    align-self: flex-end;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .action {
