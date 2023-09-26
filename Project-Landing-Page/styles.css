@@ -1,7 +1,6 @@
 body {
     height: 100vh;
     margin: 0;
-    overflow: hidden;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
@@ -83,6 +82,31 @@ li {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 100px;
+}
+
+.list-items {
+    display: flex;
+    gap: 50px;
+}
+
+.item {
+    height: 250px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item p {
+    text-align: center;
+}
+
+.box-border {
+    flex: 1;
+    width: 200px;
+    border: 3px solid #3882f6;
+    border-radius: 5px;
 }
 
 .quote {
