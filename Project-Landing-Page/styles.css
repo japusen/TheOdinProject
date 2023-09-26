@@ -1,4 +1,8 @@
 body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -6,6 +10,35 @@ body {
 .heading {
     background-color: #1f2937;
     flex: 1;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15%;
+}
+
+.logo {
+    color: #f9faf8;
+    font-size: 24px;
+    
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    color: #e5e7eb;
+    font-size: 18px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 .info {
@@ -18,10 +51,18 @@ body {
 }
 
 .action {
-    background-color: #3882f6;
     flex: 1;
 }
 
-.footer {
+.action_box {
+    background-color: #3882f6;
+}
 
+button {
+    background-color: #3882f6;
+    
+}
+
+.footer {
+    background-color: #1f2937;
 }
