@@ -26,6 +26,8 @@ function operate(operator, firstOperand, secondOperand) {
             return multiply(firstOperand, secondOperand);
         case 'divide':
             return divide(firstOperand, secondOperand);
+        default:
+            return 'error';
     }
 }
 
