@@ -1,5 +1,5 @@
 const findTheOldest = function(people) {
-    return people.reduce((oldest, person) => older(oldest, person), people[0]);
+    return people.reduce((oldest, person) => older(oldest, person));
 };
 
 function older(firstPerson, secondPerson) {
