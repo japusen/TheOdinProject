@@ -25,5 +25,35 @@ body {
 }
 
 #display {
-    flex: 1.5;
+    flex: 2;
+    display: flex;
+}
+
+.display-content {
+    flex: 1;
+    margin: 20px 20px 10px 20px;
+    background-color: white;
+    border: 1px solid;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: end;
+}
+
+.display-content p {
+    margin: 0px 20px 0px 0px;
+}
+
+.previous-operation {
+    font-size: 18px;
+}
+
+.current-operand {
+    font-size: 40px;
+}
+
+.first-row {
+    display: flex;
+    justify-content: space-evenly;
 }
