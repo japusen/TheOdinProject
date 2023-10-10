@@ -13,8 +13,10 @@ body {
 .calculator {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    padding: 15px;
     height: 500px;
-    width: 400px;
+    width: 350px;
     background-color: azure;
     border: 1px solid;
     border-radius: 10px;
@@ -22,27 +24,28 @@ body {
 
 .calculator div {
     flex: 1;
+    display: flex;
+    gap: 15px;
 }
 
 #display {
     flex: 2;
     display: flex;
+    flex-direction: column;
 }
 
 .display-content {
-    flex: 1;
-    margin: 20px 20px 10px 20px;
+    padding: 15px;
     background-color: white;
     border: 1px solid;
     border-radius: 5px;
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: end;
 }
 
 .display-content p {
-    margin: 0px 20px 0px 0px;
+    margin: 0;
 }
 
 .previous-operation {
@@ -53,7 +56,9 @@ body {
     font-size: 40px;
 }
 
-.first-row {
-    display: flex;
-    justify-content: space-evenly;
+button {
+    flex: 1;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 20px;
 }
