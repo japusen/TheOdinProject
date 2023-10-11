@@ -13,7 +13,7 @@ function multiply(a, b) {
 function divide(a, b) {
     if (b === '0')
         return 'Error! Divide by zero';
-    return Number(a) / Number(b);
+    return Math.round(((Number(a) / Number(b)) + Number.EPSILON) * 100) / 100;
 }
 
 function operate(operator, firstOperand, secondOperand) {
