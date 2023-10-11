@@ -1,31 +1,31 @@
 function add(a, b) {
-	return a + b;
+	return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
-	return a - b;
+	return Number(a) - Number(b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return Number(a) * Number(b);
 }
 
 function divide(a, b) {
-    if (b === 0)
-        return undefined;
-    return a / b;
+    if (b === '0')
+        return 'Error! Divide by zero';
+    return Number(a) / Number(b);
 }
 
 function operate(operator, firstOperand, secondOperand) {
     switch (operator) {
         case 'add':
-            return add(firstOperand, secondOperand);
+            return add(firstOperand, secondOperand).toString();
         case 'subtract':
-            return subtract(firstOperand, secondOperand);
+            return subtract(firstOperand, secondOperand).toString();
         case 'multiply':
-            return multiply(firstOperand, secondOperand);
+            return multiply(firstOperand, secondOperand).toString();
         case 'divide':
-            return divide(firstOperand, secondOperand);
+            return divide(firstOperand, secondOperand).toString();
         default:
             return 'error';
     }
@@ -35,6 +35,8 @@ function clearDisplay() {
     if (displayNumber.length !== 0) {
         updateDisplayNumber('');
         updateDisplayExpression('');
+        firstOperand = '';
+        secondOperand = '';
     }
 }
 
@@ -57,6 +59,9 @@ function updateDisplayExpression(expression) {
 }
 
 function addDigit(digit) {
+    if (firstOperand !== '' & secondOperand !== '')
+        return;
+
     let newNumber;
     (displayNumber.length == 1 && displayNumber == '0') ? 
     newNumber = digit : newNumber = displayNumber.concat(digit);
@@ -89,9 +94,33 @@ function initButtons() {
 
 let firstOperand = '';
 let secondOperand = '';
-let operator = null;
+let operator = '';
 let previousExpression = '';
 let displayNumber = '';
 
 initButtons();
 updateDisplayNumber('0');
+
+let addButton = document.querySelector('.add-btn');
+addButton.addEventListener('click', _ => {
+    if (displayNumber !== '') {
+        if (firstOperand === '') {
+            firstOperand = displayNumber;
+            operator = '+';
+            updateDisplayExpression(`${firstOperand} ${operator}`)
+            updateDisplayNumber('');
+        } else if (secondOperand === '') {
+            secondOperand = displayNumber;
+            operator = '+';
+            updateDisplayExpression(`${previousExpression} ${secondOperand}`)
+            let answer = operate('add', firstOperand, secondOperand);
+            updateDisplayNumber(answer);
+        } else {
+            firstOperand = displayNumber;
+            secondOperand = '';
+            operator = '+';
+            updateDisplayExpression(`${firstOperand} ${operator}`)
+            updateDisplayNumber('');
+        }
+    }
+});
