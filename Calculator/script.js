@@ -39,7 +39,7 @@ function clearDisplay() {
 }
 
 function deleteDisplayNumber() {
-    if (displayNumber.length !== 0) {
+    if (displayNumber.length !== 0 && operator !== '=') {
         updateDisplayNumber(displayNumber.slice(0, -1))
     }
 }
@@ -100,6 +100,17 @@ function initButtons() {
                 updateDisplayNumber('');
             }
         });
+    });
+
+    let equalsButton = document.querySelector('.equals-btn');
+    equalsButton.addEventListener('click', _ => {
+        if (firstOperand !== '' && operator !== '' && displayNumber !== '') {
+            let answer = operate(operator, firstOperand, displayNumber);
+            updateDisplayExpression(`${firstOperand} ${operator} ${displayNumber} =`)
+            updateDisplayNumber(answer);
+            firstOperand = '';
+            operator = '=';
+        }
     });
 }
 
