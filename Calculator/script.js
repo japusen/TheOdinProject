@@ -56,26 +56,31 @@ function updateDisplayExpression(expression) {
     displayExpression.textContent = previousExpression;
 }
 
+function addDigit(digit) {
+    let newNumber;
+    (displayNumber.length == 1 && displayNumber == '0') ? 
+    newNumber = digit : newNumber = displayNumber.concat(digit);
+    updateDisplayNumber(newNumber);
+}
+
 function initButtons() {
     let clearButton = document.querySelector('.clear-btn');
-    clearButton.addEventListener('click', () => {
-        clearDisplay();
-    });
+    clearButton.addEventListener('click', clearDisplay);
 
     let deleteButton = document.querySelector('.delete-btn');
     deleteButton.addEventListener('click', deleteDisplayNumber);
 
     const buttonsMap = new Map([
-        ['zero-btn', 0], ['one-btn', 1], ['two-btn', 2],
-        ['three-btn', 3], ['four-btn', 4], ['five-btn', 5],
-        ['six-btn', 6], ['seven-btn', 7], ['eight-btn', 8], ['nine-btn', 9]
+        ['zero-btn', '0'], ['one-btn', '1'], ['two-btn', '2'],
+        ['three-btn', '3'], ['four-btn', '4'], ['five-btn', '5'],
+        ['six-btn', '6'], ['seven-btn', '7'], ['eight-btn', '8'], 
+        ['nine-btn', '9']
     ]);
     
-    buttonsMap.forEach((value, key, map) => {
+    buttonsMap.forEach((value, key, _) => {
         let currentButton = document.querySelector(`button.${key}`);
-        currentButton.addEventListener('click', () => {
-            let newNumber = displayNumber.concat(value);
-            updateDisplayNumber(newNumber);
+        currentButton.addEventListener('click', _ => {
+            addDigit(value);
         });
     });
 }
@@ -90,4 +95,3 @@ let displayNumber = '';
 
 initButtons();
 updateDisplayNumber('0');
-updateDisplayExpression('0 + 0');
