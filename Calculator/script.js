@@ -35,13 +35,10 @@ function clearDisplay() {
     updateDisplayNumber('');
     updateDisplayExpression('');
     firstOperand = '';
-    secondOperand = '';
+    operator = '';
 }
 
 function deleteDisplayNumber() {
-    if (firstOperand !== '' & secondOperand !== '')
-        return;
-
     if (displayNumber.length !== 0) {
         updateDisplayNumber(displayNumber.slice(0, -1))
     }
@@ -60,9 +57,6 @@ function updateDisplayExpression(expression) {
 }
 
 function addDigit(digit) {
-    if (firstOperand !== '' & secondOperand !== '')
-        return;
-
     let newNumber;
     (displayNumber.length == 1 && displayNumber == '0') ? 
     newNumber = digit : newNumber = displayNumber.concat(digit);
@@ -89,37 +83,32 @@ function initButtons() {
             addDigit(value);
         });
     });
+
+    const operators = new Map([
+        ['divide-btn', '÷'], ['multiply-btn', '×'],
+        ['add-btn', '+'], ['subtract-btn', '-'], 
+    ]);
+
+    operators.forEach((value, key, _) => {
+        let operatorButton = document.querySelector(`.${key}`);
+        operatorButton.addEventListener('click', _ => {
+            if (displayNumber !== '') {
+                firstOperand = (firstOperand === '') ? 
+                displayNumber : operate(operator, firstOperand, displayNumber);
+                operator = value;
+                updateDisplayExpression(`${firstOperand} ${operator}`)
+                updateDisplayNumber('');
+            }
+        });
+    });
 }
 
 
 
 let firstOperand = '';
-let secondOperand = '';
 let operator = '';
 let previousExpression = '';
 let displayNumber = '';
 
 initButtons();
 updateDisplayNumber('0');
-
-let addButton = document.querySelector('.add-btn');
-addButton.addEventListener('click', _ => {
-    operator = '+';
-    if (displayNumber !== '') {
-        if (firstOperand === '') {
-            firstOperand = displayNumber;
-            updateDisplayExpression(`${firstOperand} ${operator}`)
-            updateDisplayNumber('');
-        } else if (secondOperand === '') {
-            secondOperand = displayNumber;
-            updateDisplayExpression(`${previousExpression} ${secondOperand}`)
-            let answer = operate(operator, firstOperand, secondOperand);
-            updateDisplayNumber(answer);
-        } else {
-            firstOperand = displayNumber;
-            secondOperand = '';
-            updateDisplayExpression(`${firstOperand} ${operator}`)
-            updateDisplayNumber('');
-        }
-    }
-});
