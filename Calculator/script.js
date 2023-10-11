@@ -13,22 +13,29 @@ function multiply(a, b) {
 function divide(a, b) {
     if (b === '0')
         return 'Error! Divide by zero';
-    return Math.round(((Number(a) / Number(b)) + Number.EPSILON) * 100) / 100;
+    return Number(a) / Number(b)
 }
 
 function operate(operator, firstOperand, secondOperand) {
+    let answer;
     switch (operator) {
         case '+':
-            return add(firstOperand, secondOperand).toString();
+            answer = add(firstOperand, secondOperand);
+            break;
         case '-':
-            return subtract(firstOperand, secondOperand).toString();
+            answer = subtract(firstOperand, secondOperand);
+            break;
         case '×':
-            return multiply(firstOperand, secondOperand).toString();
+            answer = multiply(firstOperand, secondOperand);
+            break;
         case '÷':
-            return divide(firstOperand, secondOperand).toString();
+            answer = divide(firstOperand, secondOperand);
+            break;
         default:
-            return 'error';
+            answer = 'error';
     }
+
+    return Math.round((answer + Number.EPSILON) * 100000) / 100000;
 }
 
 function clearDisplay() {
@@ -57,9 +64,7 @@ function updateDisplayExpression(expression) {
 }
 
 function addDigit(digit) {
-    let newNumber;
-    (displayNumber.length == 1 && displayNumber == '0') ? 
-    newNumber = digit : newNumber = displayNumber.concat(digit);
+    let newNumber = (displayNumber == '0') ? ((digit == '.') ? '0.' : digit) : displayNumber.concat(digit);
     updateDisplayNumber(newNumber);
 }
 
@@ -111,6 +116,12 @@ function initButtons() {
             firstOperand = '';
             operator = '=';
         }
+    });
+
+    let decimalButton = document.querySelector('.period-btn');
+    decimalButton.addEventListener('click', _ => {
+        if (displayNumber !== '' && !displayNumber.includes('.'))
+            addDigit('.');
     });
 }
 
