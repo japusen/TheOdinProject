@@ -41,6 +41,9 @@ function clearDisplay() {
 }
 
 function deleteDisplayNumber() {
+    if (firstOperand !== '' & secondOperand !== '')
+        return;
+    
     if (displayNumber.length !== 0) {
         updateDisplayNumber(displayNumber.slice(0, -1))
     }
@@ -103,22 +106,20 @@ updateDisplayNumber('0');
 
 let addButton = document.querySelector('.add-btn');
 addButton.addEventListener('click', _ => {
+    operator = '+';
     if (displayNumber !== '') {
         if (firstOperand === '') {
             firstOperand = displayNumber;
-            operator = '+';
             updateDisplayExpression(`${firstOperand} ${operator}`)
             updateDisplayNumber('');
         } else if (secondOperand === '') {
             secondOperand = displayNumber;
-            operator = '+';
             updateDisplayExpression(`${previousExpression} ${secondOperand}`)
             let answer = operate('add', firstOperand, secondOperand);
             updateDisplayNumber(answer);
         } else {
             firstOperand = displayNumber;
             secondOperand = '';
-            operator = '+';
             updateDisplayExpression(`${firstOperand} ${operator}`)
             updateDisplayNumber('');
         }
