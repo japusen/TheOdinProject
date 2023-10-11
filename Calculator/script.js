@@ -18,13 +18,13 @@ function divide(a, b) {
 
 function operate(operator, firstOperand, secondOperand) {
     switch (operator) {
-        case 'add':
+        case '+':
             return add(firstOperand, secondOperand).toString();
-        case 'subtract':
+        case '-':
             return subtract(firstOperand, secondOperand).toString();
-        case 'multiply':
+        case '×':
             return multiply(firstOperand, secondOperand).toString();
-        case 'divide':
+        case '÷':
             return divide(firstOperand, secondOperand).toString();
         default:
             return 'error';
@@ -32,18 +32,16 @@ function operate(operator, firstOperand, secondOperand) {
 }
 
 function clearDisplay() {
-    if (displayNumber.length !== 0) {
-        updateDisplayNumber('');
-        updateDisplayExpression('');
-        firstOperand = '';
-        secondOperand = '';
-    }
+    updateDisplayNumber('');
+    updateDisplayExpression('');
+    firstOperand = '';
+    secondOperand = '';
 }
 
 function deleteDisplayNumber() {
     if (firstOperand !== '' & secondOperand !== '')
         return;
-    
+
     if (displayNumber.length !== 0) {
         updateDisplayNumber(displayNumber.slice(0, -1))
     }
@@ -115,7 +113,7 @@ addButton.addEventListener('click', _ => {
         } else if (secondOperand === '') {
             secondOperand = displayNumber;
             updateDisplayExpression(`${previousExpression} ${secondOperand}`)
-            let answer = operate('add', firstOperand, secondOperand);
+            let answer = operate(operator, firstOperand, secondOperand);
             updateDisplayNumber(answer);
         } else {
             firstOperand = displayNumber;
