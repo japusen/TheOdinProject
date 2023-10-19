@@ -5,8 +5,8 @@ html {
 body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
     display: flex;
+    flex-wrap: wrap;
 }
 
 @font-face {
@@ -62,7 +62,7 @@ body {
 div.form-section {
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 20px 100px;
+    padding: 20px 20px 20px 100px;
     box-shadow: 0 4px 2px -2px gray;
 }
 
@@ -114,6 +114,29 @@ label {
 form > legend {
     font-size: 24px;
 }
+
 .submit {
     background-color: #eee;
+    padding: 20px 100px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.submit > button {
+    height: 40px;
+    padding: 0px 60px;
+    background-color: #596D48;
+    color: white;
+    border: #596D48;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 1px rgba(51, 50, 50, 0.5);
+}
+
+a {
+    color: #596D48;
+    text-decoration: none;
 }
