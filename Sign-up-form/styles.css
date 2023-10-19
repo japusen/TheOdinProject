@@ -14,9 +14,8 @@ body {
     src: url('Norse-Bold.otf');
 }
 .logo {
-    flex: 4;
+    flex: 3;
     background-image: url('./halie-west-25xggax4bSA-unsplash.jpg');
-    background-color: red;
     color: white;
     font-family: Nordic;
     font-size: 50px;
@@ -42,5 +41,79 @@ body {
 
 .sign-up {
     flex: 7;
-    background-color: green;
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-up > div {
+    flex: 1;
+}
+
+.description {
+    background-color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 50px 100px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+div.form-section {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px 100px;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.inputs > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 80%;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    border: solid 2px #E5E7EB;
+    border-radius: 5px;
+    outline: none; /* Remove chrome outline */
+}
+
+input:focus {
+    border-color: rgba(7, 20, 199, 0.599);
+    box-shadow: 2px 2px 5px 1px rgba(51, 50, 50, 0.5);
+}
+
+input:invalid {
+    border-color: rgba(237, 6, 6, 0.687);
+}
+
+label {
+    font-weight: 600;
+    color: rgba(51, 50, 50, 0.9);
+    font-size: 16px;
+}
+
+form > legend {
+    font-size: 24px;
+}
+.submit {
+    background-color: #eee;
 }
