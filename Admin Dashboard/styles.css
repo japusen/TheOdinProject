@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html {
     height: 100vh;
 }
@@ -9,13 +11,46 @@ body {
 .container {
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 4fr;
 }
 
 .sidebar {
     background-color: #083344;
     grid-row: 1 / -1;
+    padding: 20px;
+}
+
+.sidebar > div {
+    margin-bottom: 50px;
+}
+
+.dashboard, 
+.navigation > div,
+.extras > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sidebar svg {
+    height: 25px;
+    fill: white;
+}
+
+.dashboard svg {
+    height: 50px;
+}
+
+.sidebar h2, h3 {
+    margin: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navigation, .extras {
+    display: grid;
+    gap: 20px;
 }
 
 .header {
