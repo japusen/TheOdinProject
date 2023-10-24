@@ -125,7 +125,27 @@ h2, h3, h4 {
 
 .content .projects {
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+    grid-template: auto repeat(3, 1fr) / repeat(2, 1fr);
+    gap: 10px;
+}
+
+.content h3 {
+    color: #083344;
+    grid-column: 1 / -1;
+}
+
+.projects .project-card {
+    background-color: white;
+    border: 1px solid #06b6d4;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 50fr;
+}
+
+.project-card .color-sliver {
+    background-color: #06b6d4;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .content .side-column {
