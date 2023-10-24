@@ -44,7 +44,7 @@ svg {
     height: 50px;
 }
 
-h2, h3 {
+h2, h3, h4 {
     margin: 0;    
 }
 
@@ -81,12 +81,38 @@ h2, h3 {
     gap: 30px;
 }
 
+.welcome {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 9fr;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.welcome img {
+    grid-row: 1 / -1;
+    height: 60px;
+}
+
 
 .search input {
     flex: 1;
     border: none;
     border-radius: 10px;
     height: 25px;
+}
+
+.buttons {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+}
+
+.buttons > button {
+    background-color: #083344;
+    color: white;
+    border: none;
+    border-radius: 20px;
 }
 
 .content {
