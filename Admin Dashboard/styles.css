@@ -117,4 +117,18 @@ h2, h3, h4 {
 
 .content {
     background-color: #ecfeff;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-template-rows: 1fr;
+    padding: 20px;
+}
+
+.content .projects {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+}
+
+.content .side-column {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
