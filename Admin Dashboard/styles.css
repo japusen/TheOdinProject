@@ -148,6 +148,28 @@ h2, h3, h4 {
     border-bottom-left-radius: 10px;
 }
 
+.project-card .description {
+    padding: 20px;
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    gap: 5px;
+}
+
+.description .icons {
+    justify-self: end;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+}
+
+.icons svg {
+    fill: #585858;
+}
+
+.description h4 {
+    color: #585858;
+}
+
 .content .side-column {
     display: grid;
     grid-template-rows: 1fr 1fr;
