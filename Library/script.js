@@ -72,6 +72,7 @@ function createBookCard(book) {
 
 function displayBooks() {
     let container = document.querySelector('.container');
+    container.innerHTML = '';
     myLibrary.forEach(book => {
         let bookCard = createBookCard(book);
         container.appendChild(bookCard);
@@ -80,17 +81,34 @@ function displayBooks() {
 
 let dialog = document.querySelector('dialog');
 let addButton = document.querySelector('.addBook');
-let dialogClose = document.querySelector('.dialogClose')
+let dialogClose = document.querySelector('.dialogClose');
+let dialogConfrim = document.querySelector('.dialogConfirm');
 
 addButton.addEventListener('click', _ => {    
     dialog.show();
 });
 
-dialogClose.addEventListener("click", _ => {
+dialogClose.addEventListener('click', _ => {
     dialog.close();
 });
 
+dialogConfrim.addEventListener('click', _ => {
+    let titleInput = document.querySelector('dialog #title')
+    let titleValue = titleInput.value;
+    titleInput.value = '';
 
+    let authorInput = document.querySelector('dialog #author')
+    let authorValue = authorInput.value;
+    authorInput.value = '';
+
+    let pagesInput = document.querySelector('dialog #pages')
+    let pagesValue = pagesInput.value;
+    pagesInput.value = '';
+
+    let radioValue = document.querySelector('dialog #yes').checked;
+    addBookToLibrary(titleValue, authorValue, pagesValue, radioValue);
+    displayBooks();
+});
 
 myLibrary.push(new Book('The Hobbit', 'J.R.R. Tolkien', 295, false));
 myLibrary.push(new Book('Dune', 'Frank Herbert', 896, false));
