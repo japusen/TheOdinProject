@@ -15,7 +15,33 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
-function createBookCard(container, book) {
+function readButton(book) {
+    let read = document.createElement('button');
+    read.classList.add('read');
+    read.textContent = book.read ? 'Read' : 'Not Read';
+    read.addEventListener('click', _ => {
+        book.read = !book.read;
+        read.textContent = book.read ? 'Read' : 'Not Read';
+    });
+
+    return read;
+}
+
+function removeButton(card, book) {
+    let container = document.querySelector('.container');
+
+    let removeBook = document.createElement('button');
+    removeBook.classList.add('remove');
+    removeBook.textContent = 'Remove';
+    removeBook.addEventListener('click', _ => {
+        myLibrary = myLibrary.filter(b => b !== book );
+        container.removeChild(card);
+    });
+    
+    return removeBook;
+}
+
+function createBookCard(book) {
     let card = document.createElement('div')
     card.classList.add('card');
     
@@ -31,21 +57,9 @@ function createBookCard(container, book) {
     pages.classList.add('pages');
     pages.textContent = `${book.pages} pages`;
 
-    let read = document.createElement('button');
-    read.classList.add('read');
-    read.textContent = book.read ? 'Read' : 'Not Read';
-    read.addEventListener('click', _ => {
-        book.read = !book.read;
-        read.textContent = book.read ? 'Read' : 'Not Read';
-    });
+    let read = readButton(book);
 
-    let removeBook = document.createElement('button');
-    removeBook.classList.add('remove');
-    removeBook.textContent = 'Remove';
-    removeBook.addEventListener('click', _ => {
-        myLibrary = myLibrary.filter(b => b !== book );
-        container.removeChild(card);
-    })
+    let removeBook = removeButton(card, book);
 
     card.appendChild(title);
     card.appendChild(author);
@@ -59,10 +73,24 @@ function createBookCard(container, book) {
 function displayBooks() {
     let container = document.querySelector('.container');
     myLibrary.forEach(book => {
-        let bookCard = createBookCard(container, book);
+        let bookCard = createBookCard(book);
         container.appendChild(bookCard);
     });
 }
+
+let dialog = document.querySelector('dialog');
+let addButton = document.querySelector('.addBook');
+let dialogClose = document.querySelector('.dialogClose')
+
+addButton.addEventListener('click', _ => {    
+    dialog.show();
+});
+
+dialogClose.addEventListener("click", _ => {
+    dialog.close();
+});
+
+
 
 myLibrary.push(new Book('The Hobbit', 'J.R.R. Tolkien', 295, false));
 myLibrary.push(new Book('Dune', 'Frank Herbert', 896, false));
