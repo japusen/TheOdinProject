@@ -29,6 +29,12 @@ body {
 
 .tab-row button {
     font-size: 20px;
+    background-color: white;
+}
+
+.tab-row button:hover {
+    font-size: 20px;
+    background-color: aliceblue;
 }
 
 .content {
@@ -53,6 +59,11 @@ body {
     height: 200px;
     width: 200px;
     border: 1px solid black;
+}
+
+.info .order-btn {
+    background-color: white;
+    font-size: 18px;
 }
 
 .content .menu {

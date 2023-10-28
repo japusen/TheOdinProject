@@ -1,6 +1,5 @@
 const menu = () => {
     let content = document.querySelector('div.content');
-    content.textContent = '';
 
     let rolls = ['Roly Poly', 'Roly Poly #2', 'Oishi',
                  'Alaskan Roll', 'Rainbow Roll', 'Dragon Roll',

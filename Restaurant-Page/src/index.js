@@ -27,6 +27,7 @@ let home_tab = document.createElement('button');
 tab_row.appendChild(home_tab);
 home_tab.textContent = 'Home';
 home_tab.addEventListener('click', (event) => {
+    content.textContent = '';
     home();
 });
 
@@ -34,6 +35,7 @@ let menu_tab = document.createElement('button');
 tab_row.appendChild(menu_tab);
 menu_tab.textContent = 'Menu';
 menu_tab.addEventListener('click', (event) => {
+    content.textContent = '';
     menu();
 });
 
@@ -41,6 +43,7 @@ let contact_tab = document.createElement('button');
 tab_row.appendChild(contact_tab);
 contact_tab.textContent = 'Contact';
 contact_tab.addEventListener('click', (event) => {
+    content.textContent = '';
     contact();
 });
 

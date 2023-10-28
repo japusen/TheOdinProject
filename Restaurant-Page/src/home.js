@@ -1,6 +1,5 @@
 const home = () => {
     let content = document.querySelector('div.content');
-    content.textContent = '';
 
     let info = document.createElement('div');
     content.appendChild(info);
