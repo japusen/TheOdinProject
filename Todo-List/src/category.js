@@ -10,9 +10,13 @@ function createCategory (name) {
     }
 
     // Edit Todo
-    const editTodo = (index) => {
+    const editTodo = (index, title, description, dueDate, priority, completed) => {
         let todo = todoList[index];
-        
+        todo.setTitle(title);
+        todo.setDescription(description);
+        todo.setDueDate(dueDate);
+        todo.setPriority(priority);
+        todo.setCompleted(completed);
     }
 
     // Remove todo
@@ -27,7 +31,7 @@ function createCategory (name) {
     // Get List of Todos
     const getTodoList = () => todoList
 
-    return { name, addTodo, removeTodo, markTodoComplete, getTodoList};
+    return { name, addTodo, editTodo, removeTodo, markTodoComplete, getTodoList};
 }
 
 export { createCategory };
