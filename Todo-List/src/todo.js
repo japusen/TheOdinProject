@@ -9,11 +9,11 @@ function createTodo (title, description, dueDate, priority) {
     const setDescription = (description) => todo.description = description;
     const setDueDate = (date) => todo.dueDate = date;
     const setPriority = (priority) => todo.priority = priority;
-    const markCompleted = (completed) => todo.completed = completed;
+    const setCompleted = (completed) => todo.completed = completed;
 
     return { 
         getTitle, getDescription, getDueDate, getPriority, getCompleted,
-        setTitle, setDescription, setDueDate, setPriority, markCompleted
+        setTitle, setDescription, setDueDate, setPriority, setCompleted
     };
 }
 
