@@ -48,32 +48,39 @@ function populateSidebar(categories) {
     });
 }
 
-function populateTodoList(category, todoList) {
+function populateTodoList(category) {
+    let todoList = category.getTodoList();
     let todos = document.querySelector('div.todo-list');
 
     let header = document.createElement('div');
     let name = document.createElement('div');
-    name.textContent = category;
+    name.textContent = category.name;
     header.appendChild(name);
     header.classList.add('header');
     todos.appendChild(header);
 
-    todoList.forEach( todo => {
-        let todoBtn = document.createElement('button');
-        let name = document.createElement('div');
-        name.textContent = todo;
-        todoBtn.appendChild(name);
-        todos.appendChild(todoBtn);
-
-        todoBtn.addEventListener('click', () => {
-            todos.removeChild(todoBtn);
-            const index = todoList.indexOf(todo);
-            if (index > -1) { // only splice array when item is found
-                todoList.splice(index, 1); // 2nd parameter means remove one item only
-            }
-            console.log(todoList);
-        } );
+    todoList.forEach( (todo, _ , todoList) => {
+        createTodo(todo, todoList);
     });
+}
+
+function createTodo(todo, todoList) {
+    let todos = document.querySelector('div.todo-list');
+
+    let todoBtn = document.createElement('button');
+    let name = document.createElement('div');
+    name.textContent = todo.getTitle;
+    todoBtn.appendChild(name);
+    todos.appendChild(todoBtn);
+
+    todoBtn.addEventListener('click', () => {
+        todos.removeChild(todoBtn);
+        const index = todoList.indexOf(todo);
+        if (index > -1) { // only splice array when item is found
+            todoList.splice(index, 1); // 2nd parameter means remove one item only
+        }
+        console.log(todoList);
+    } );
 }
 
 export { layout, populateSidebar, populateTodoList };
