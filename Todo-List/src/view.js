@@ -1,4 +1,6 @@
-function layout() {
+import { importantButton, completedButton, deleteButton } from "./components";
+
+function constructPageLayout() {
     let body = document.querySelector('body');
 
     let header = document.createElement('header');
@@ -36,12 +38,12 @@ function populateSidebar(categories) {
     sidebar.appendChild(categoryDiv);
 
     categories.forEach(category => {
-        let categoryBtn = displayCategory(category);
+        let categoryBtn = categoryButton(category);
         categoryDiv.appendChild(categoryBtn);
     });
 }
 
-function displayCategory(category) {
+function categoryButton(category) {
     let button = document.createElement('button');
     let name = document.createElement('div');
     name.textContent = category.name;
@@ -95,69 +97,4 @@ function displayTodo(todo, removeTodo) {
     todoBtn.appendChild(deleteBtn);
 }
 
-function importantButton(isImportant, toggleFunction) {
-    return toggleButton(
-        isImportant, 
-        toggleFunction, 
-        'star', 
-        'star_outlined'
-    );
-}
-
-function completedButton(isComplete, toggleFunction) {
-    return toggleButton(
-        isComplete, 
-        toggleFunction, 
-        'check_box', 
-        'check_box_outline_blank'
-    );
-}
-
-function deleteButton(deleteFunction) {
-    return singleActionButton('delete', deleteFunction);
-}
-
-function toggleButton(boolean, toggleFunction, trueIconName, falseIconName) {
-    let button = document.createElement('button');
-    button.classList.add('toggle');
-
-    let trueIcon = document.createElement('span');
-    trueIcon.classList.add('material-icons-outlined');
-    trueIcon.classList.add(trueIconName);
-    trueIcon.textContent = trueIconName;
-    button.appendChild(trueIcon);
-
-    let falseIcon = document.createElement('span');
-    falseIcon.classList.add('material-icons-outlined');
-    falseIcon.classList.add(trueIconName);
-    falseIcon.textContent = falseIconName;
-    button.appendChild(falseIcon);
-
-    (boolean) ? falseIcon.classList.add('hidden') :
-                trueIcon.classList.add('hidden');
-
-    button.addEventListener('click', () => {
-        toggleFunction();
-        trueIcon.classList.toggle('hidden');
-        falseIcon.classList.toggle('hidden');
-    });
-
-    return button;
-}
-
-function singleActionButton(iconName, actionFunction) {
-    let button = document.createElement('button');
-    button.classList.add('toggle');
-
-    let icon = document.createElement('span');
-    icon.classList.add('material-icons-outlined');
-    icon.classList.add(iconName);
-    icon.textContent = iconName;
-    button.appendChild(icon);
-
-    button.addEventListener('click', actionFunction);
-
-    return button;
-}
-
-export { layout, populateSidebar };
+export { constructPageLayout, populateSidebar };
