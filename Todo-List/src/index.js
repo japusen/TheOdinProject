@@ -15,7 +15,16 @@ allCategory.addTodo('Run', 'Run for 1 mile', Date.toString(), true);
 allCategory.addTodo('Walk dogs', '', '', false);
 allCategory.addTodo('Build project', '', Date.toString(), false);
 
+let exerciseCategory = createCategory('Exercise');
+exerciseCategory.addTodo('Run', 'Run for 1 mile', Date.toString(), true);
+exerciseCategory.addTodo('Lift Weights', '', '', false);
+exerciseCategory.addTodo('Yoga', '', Date.toString(), false);
+
+let categories = [allCategory, exerciseCategory];
+
 importMaterialIcons();
 layout();
-populateSidebar(['All', 'Personal', 'Exercise', 'Work']);
-populateTodoList(allCategory);
+populateSidebar(categories);
+
+let categoriesDiv = document.querySelector('div.categories :nth-child(1)');
+categoriesDiv.click();

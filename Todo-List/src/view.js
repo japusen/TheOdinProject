@@ -36,31 +36,37 @@ function populateSidebar(categories) {
     sidebar.appendChild(categoryDiv);
 
     categories.forEach(category => {
-        let categoryBtn = document.createElement('button');
-        let name = document.createElement('div');
-        name.textContent = category;
-        categoryBtn.appendChild(name);
+        let categoryBtn = displayCategory(category);
         categoryDiv.appendChild(categoryBtn);
-
-        categoryBtn.addEventListener('click', () => {
-            console.log(category);
-        } );
     });
 }
 
-function populateTodoList(category) {
-    let todoList = category.getTodoList();
-    let todos = document.querySelector('div.todo-list');
-
-    let header = document.createElement('div');
+function displayCategory(category) {
+    let button = document.createElement('button');
     let name = document.createElement('div');
     name.textContent = category.name;
-    header.appendChild(name);
+    button.appendChild(name);
+
+    button.addEventListener('click', () => {
+        populateTodoList(category.name, category.getTodoList(), category.removeTodo);
+    });
+
+    return button;
+}
+
+function populateTodoList(name, todoList, removeTodo) {
+    let todos = document.querySelector('div.todo-list');
+    todos.textContent = '';
+
+    let header = document.createElement('div');
+    let nameDiv = document.createElement('div');
+    nameDiv.textContent = name;
+    header.appendChild(nameDiv);
     header.classList.add('header');
     todos.appendChild(header);
 
     todoList.forEach( todo => {
-        displayTodo(todo, category.removeTodo);
+        displayTodo(todo, removeTodo);
     });
 }
 
@@ -154,4 +160,4 @@ function singleActionButton(iconName, actionFunction) {
     return button;
 }
 
-export { layout, populateSidebar, populateTodoList };
+export { layout, populateSidebar };
