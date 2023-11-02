@@ -15,6 +15,8 @@ function createCategory (name) {
         if (index > -1) { // only splice array when item is found
             todoList.splice(index, 1); // 2nd parameter means remove one item only
         }
+        console.log(`Removed ${todo.getTitle}`);
+        console.log(todoList);
     }
 
     // Get List of Todos

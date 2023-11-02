@@ -60,14 +60,16 @@ function populateTodoList(category) {
     todos.appendChild(header);
 
     todoList.forEach( todo => {
-        displayTodo(todo);
+        displayTodo(todo, category.removeTodo);
     });
 }
 
-function displayTodo(todo) {
+function displayTodo(todo, removeTodo) {
     let todos = document.querySelector('div.todo-list');
 
     let todoBtn = document.createElement('button');
+    todoBtn.classList.add('todo-item');
+    todos.appendChild(todoBtn);
 
     let completedBtn = completedButton(todo.getCompleted, todo.toggleIsComplete);
     todoBtn.appendChild(completedBtn);
@@ -75,10 +77,16 @@ function displayTodo(todo) {
     let name = document.createElement('div');
     name.textContent = todo.getTitle;
     todoBtn.appendChild(name);
-    todos.appendChild(todoBtn);
+    
+    let importantBtn = importantButton(todo.getImportant, todo.toggleIsImportant);
+    todoBtn.appendChild(importantBtn);
 
-    let importantIconBtn = importantButton(todo.getImportant, todo.toggleIsImportant);
-    todoBtn.appendChild(importantIconBtn);
+    let remove = () => {
+        removeTodo(todo);
+        todos.removeChild(todoBtn);
+    }
+    let deleteBtn = deleteButton(remove);
+    todoBtn.appendChild(deleteBtn);
 }
 
 function importantButton(isImportant, toggleFunction) {
@@ -97,6 +105,10 @@ function completedButton(isComplete, toggleFunction) {
         'check_box', 
         'check_box_outline_blank'
     );
+}
+
+function deleteButton(deleteFunction) {
+    return singleActionButton('delete', deleteFunction);
 }
 
 function toggleButton(boolean, toggleFunction, trueIconName, falseIconName) {
@@ -123,6 +135,21 @@ function toggleButton(boolean, toggleFunction, trueIconName, falseIconName) {
         trueIcon.classList.toggle('hidden');
         falseIcon.classList.toggle('hidden');
     });
+
+    return button;
+}
+
+function singleActionButton(iconName, actionFunction) {
+    let button = document.createElement('button');
+    button.classList.add('toggle');
+
+    let icon = document.createElement('span');
+    icon.classList.add('material-icons-outlined');
+    icon.classList.add(iconName);
+    icon.textContent = iconName;
+    button.appendChild(icon);
+
+    button.addEventListener('click', actionFunction);
 
     return button;
 }

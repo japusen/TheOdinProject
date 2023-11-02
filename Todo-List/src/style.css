@@ -104,6 +104,10 @@ button.toggle {
     color: green;
 }
 
+.delete {
+    color: red;
+}
+
 button.toggle .hidden {
     display: none;
 }
