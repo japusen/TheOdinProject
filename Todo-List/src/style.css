@@ -87,4 +87,23 @@ header {
     border-radius: 5px;
     background-color: aliceblue;
     display: flex;
+    align-items: center;
+}
+
+button.toggle {
+    width: 40px;
+    border: none;
+    padding: 0;
+}
+
+.star {
+    color: gold;
+}
+
+.check_box {
+    color: green;
+}
+
+button.toggle .hidden {
+    display: none;
 }

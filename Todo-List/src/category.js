@@ -9,29 +9,18 @@ function createCategory (name) {
         todoList.push(todo); 
     }
 
-    // Edit Todo
-    const editTodo = (index, title, description, dueDate, priority, completed) => {
-        let todo = todoList[index];
-        todo.setTitle(title);
-        todo.setDescription(description);
-        todo.setDueDate(dueDate);
-        todo.setPriority(priority);
-        todo.setCompleted(completed);
-    }
-
     // Remove todo
-    const removeTodo = (index) => todoList.splice(index, 1);
-
-    // Mark Todo Complete
-    const markTodoComplete = (index) => {
-        let todo = toodList[index];
-        todo.markCompleted();
+    const removeTodo = (todo) => {
+        const index = todoList.indexOf(todo);
+        if (index > -1) { // only splice array when item is found
+            todoList.splice(index, 1); // 2nd parameter means remove one item only
+        }
     }
 
     // Get List of Todos
     const getTodoList = () => todoList
 
-    return { name, addTodo, editTodo, removeTodo, markTodoComplete, getTodoList};
+    return { name, addTodo, removeTodo, getTodoList};
 }
 
 export { createCategory };

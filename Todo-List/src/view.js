@@ -59,28 +59,72 @@ function populateTodoList(category) {
     header.classList.add('header');
     todos.appendChild(header);
 
-    todoList.forEach( (todo, _ , todoList) => {
-        createTodo(todo, todoList);
+    todoList.forEach( todo => {
+        displayTodo(todo);
     });
 }
 
-function createTodo(todo, todoList) {
+function displayTodo(todo) {
     let todos = document.querySelector('div.todo-list');
 
     let todoBtn = document.createElement('button');
+
+    let completedBtn = completedButton(todo.getCompleted, todo.toggleIsComplete);
+    todoBtn.appendChild(completedBtn);
+
     let name = document.createElement('div');
     name.textContent = todo.getTitle;
     todoBtn.appendChild(name);
     todos.appendChild(todoBtn);
 
-    todoBtn.addEventListener('click', () => {
-        todos.removeChild(todoBtn);
-        const index = todoList.indexOf(todo);
-        if (index > -1) { // only splice array when item is found
-            todoList.splice(index, 1); // 2nd parameter means remove one item only
-        }
-        console.log(todoList);
-    } );
+    let importantIconBtn = importantButton(todo.getImportant, todo.toggleIsImportant);
+    todoBtn.appendChild(importantIconBtn);
+}
+
+function importantButton(isImportant, toggleFunction) {
+    return toggleButton(
+        isImportant, 
+        toggleFunction, 
+        'star', 
+        'star_outlined'
+    );
+}
+
+function completedButton(isComplete, toggleFunction) {
+    return toggleButton(
+        isComplete, 
+        toggleFunction, 
+        'check_box', 
+        'check_box_outline_blank'
+    );
+}
+
+function toggleButton(boolean, toggleFunction, trueIconName, falseIconName) {
+    let button = document.createElement('button');
+    button.classList.add('toggle');
+
+    let trueIcon = document.createElement('span');
+    trueIcon.classList.add('material-icons-outlined');
+    trueIcon.classList.add(trueIconName);
+    trueIcon.textContent = trueIconName;
+    button.appendChild(trueIcon);
+
+    let falseIcon = document.createElement('span');
+    falseIcon.classList.add('material-icons-outlined');
+    falseIcon.classList.add(trueIconName);
+    falseIcon.textContent = falseIconName;
+    button.appendChild(falseIcon);
+
+    (boolean) ? falseIcon.classList.add('hidden') :
+                trueIcon.classList.add('hidden');
+
+    button.addEventListener('click', () => {
+        toggleFunction();
+        trueIcon.classList.toggle('hidden');
+        falseIcon.classList.toggle('hidden');
+    });
+
+    return button;
 }
 
 export { layout, populateSidebar, populateTodoList };

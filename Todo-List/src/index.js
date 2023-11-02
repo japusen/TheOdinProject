@@ -5,7 +5,7 @@ import { createCategory } from './category';
 function importMaterialIcons() {
     let link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons';
+    link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined';
     document.head.appendChild(link);
 
 }
