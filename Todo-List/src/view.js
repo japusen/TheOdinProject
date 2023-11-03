@@ -1,4 +1,4 @@
-import { importantButton, completedButton, deleteButton } from "./components";
+import { importantButton, completedButton, deleteButton, addTodoButton } from "./components";
 
 function constructPageLayout() {
     let body = document.querySelector('body');
@@ -50,25 +50,29 @@ function categoryButton(category) {
     button.appendChild(name);
 
     button.addEventListener('click', () => {
-        populateTodoList(category.name, category.getTodoList(), category.removeTodo);
+        populateTodoList(category);
     });
 
     return button;
 }
 
-function populateTodoList(name, todoList, removeTodo) {
+function populateTodoList(category) {
     let todos = document.querySelector('div.todo-list');
     todos.textContent = '';
 
     let header = document.createElement('div');
-    let nameDiv = document.createElement('div');
-    nameDiv.textContent = name;
-    header.appendChild(nameDiv);
-    header.classList.add('header');
     todos.appendChild(header);
 
-    todoList.forEach( todo => {
-        displayTodo(todo, removeTodo);
+    let nameDiv = document.createElement('div');
+    nameDiv.textContent = category.name;
+    header.appendChild(nameDiv);
+    header.classList.add('header');
+
+    let addButton = addTodoButton(); // TODO function
+    header.appendChild(addButton);
+
+    category.getTodoList().forEach( todo => {
+        displayTodo(todo, category.removeTodo);
     });
 }
 
@@ -79,14 +83,18 @@ function displayTodo(todo, removeTodo) {
     todoBtn.classList.add('todo-item');
     todos.appendChild(todoBtn);
 
-    let completedBtn = completedButton(todo.getCompleted, todo.toggleIsComplete);
+    let completedBtn = completedButton(todo.getCompleted(), todo.toggleIsComplete);
     todoBtn.appendChild(completedBtn);
 
+    let nameContainer = document.createElement('div');
+    nameContainer.classList.add('name');
+    todoBtn.appendChild(nameContainer);
+
     let name = document.createElement('div');
-    name.textContent = todo.getTitle;
-    todoBtn.appendChild(name);
+    name.textContent = todo.getTitle();
+    nameContainer.appendChild(name);
     
-    let importantBtn = importantButton(todo.getImportant, todo.toggleIsImportant);
+    let importantBtn = importantButton(todo.getImportant(), todo.toggleIsImportant);
     todoBtn.appendChild(importantBtn);
 
     let remove = () => {
@@ -97,4 +105,4 @@ function displayTodo(todo, removeTodo) {
     todoBtn.appendChild(deleteBtn);
 }
 
-export { constructPageLayout, populateSidebar };
+export { constructPageLayout, populateSidebar, populateTodoList };

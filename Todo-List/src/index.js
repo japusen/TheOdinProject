@@ -1,5 +1,5 @@
 import './style.css';
-import { constructPageLayout, populateSidebar } from "./view";
+import { constructPageLayout, populateSidebar, populateTodoList } from "./view";
 import { createCategory } from './category';
 
 function importMaterialIcons() {
@@ -25,6 +25,4 @@ let categories = [allCategory, exerciseCategory];
 importMaterialIcons();
 constructPageLayout();
 populateSidebar(categories);
-
-let categoriesDiv = document.querySelector('div.categories :nth-child(1)');
-categoriesDiv.click();
+populateTodoList(categories[0]);

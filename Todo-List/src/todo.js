@@ -1,19 +1,15 @@
 function createTodo (title, description, dueDate, isImportant) {
-    let todo = { title, description, dueDate, isImportant, isComplete: false }
-    const getTitle = todo.title;
-    const getDescription = todo.description;
-    const getDueDate = todo.dueDate;
-    const getImportant = todo.isImportant;
-    const getCompleted = todo.isComplete;
-    const setTitle = (title) => todo.title = title;
-    const setDescription = (description) => todo.description = description;
-    const setDueDate = (date) => todo.dueDate = date;
-    const toggleIsImportant = () => {
-        todo.isImportant = !todo.isImportant;
-    }
-    const toggleIsComplete = () => {
-        todo.isComplete = !todo.isComplete;
-    }
+    let isComplete = false;
+    const getTitle = () => title;
+    const getDescription = () => description;
+    const getDueDate = () => dueDate;
+    const getImportant = () => isImportant;
+    const getCompleted = () => isComplete;
+    const setTitle = (newTitle) => title = newTitle;
+    const setDescription = (newDescription) => description = newDescription;
+    const setDueDate = (newDate) => dueDate = newDate;
+    const toggleIsImportant = () => isImportant = !isImportant;
+    const toggleIsComplete = () => isComplete = !isComplete;
     const update = (title, description, date) => {
         setTitle(title);
         setDescription(description);

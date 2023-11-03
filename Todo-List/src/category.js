@@ -15,14 +15,19 @@ function createCategory (name) {
         if (index > -1) { // only splice array when item is found
             todoList.splice(index, 1); // 2nd parameter means remove one item only
         }
-        console.log(`Removed ${todo.getTitle}`);
-        console.log(todoList);
+    }
+
+    const toggleIsComplete = (todo) => {
+        const index = todoList.indexOf(todo);
+        if (index > -1) {
+            todo.toggleIsComplete();
+        }
     }
 
     // Get List of Todos
     const getTodoList = () => todoList
 
-    return { name, addTodo, removeTodo, getTodoList};
+    return { name, addTodo, removeTodo, toggleIsComplete, getTodoList};
 }
 
 export { createCategory };

@@ -1,6 +1,7 @@
 function toggleIconButton(boolean, toggleFunction, trueIconName, falseIconName) {
     let button = document.createElement('button');
     button.classList.add('toggle');
+    button.classList.add(trueIconName);
 
     let trueIcon = document.createElement('span');
     trueIcon.classList.add('material-icons-outlined');
@@ -29,6 +30,7 @@ function toggleIconButton(boolean, toggleFunction, trueIconName, falseIconName) 
 function actionIconButton(iconName, actionFunction) {
     let button = document.createElement('button');
     button.classList.add('toggle');
+    button.classList.add(iconName);
 
     let icon = document.createElement('span');
     icon.classList.add('material-icons-outlined');
@@ -64,7 +66,7 @@ function deleteButton(deleteFunction) {
 }
 
 function addTodoButton(addFunction) {
-    return actionIconButton('add', addFunction);
+    return actionIconButton('add_box', addFunction);
 }
 
 export { importantButton, completedButton, deleteButton, addTodoButton };
