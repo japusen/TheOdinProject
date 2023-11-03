@@ -1,4 +1,4 @@
-import { importantButton, completedButton, deleteButton, addTodoButton } from "./components";
+import { todoInfo, todoEdit, addTodoButton } from "./components";
 
 function constructPageLayout() {
     let body = document.querySelector('body');
@@ -77,32 +77,35 @@ function populateTodoList(category) {
 }
 
 function displayTodo(todo, removeTodo) {
-    let todos = document.querySelector('div.todo-list');
+    let title = todo.getTitle()
+    let description = todo.getDescription();
+    let date = todo.getDueDate();
+    let completed = todo.getCompleted();
+    let important = todo.getImportant();
 
-    let todoBtn = document.createElement('button');
-    todoBtn.classList.add('todo-item');
-    todos.appendChild(todoBtn);
+    let todoList = document.querySelector('div.todo-list');
 
-    let completedBtn = completedButton(todo.getCompleted(), todo.toggleIsComplete);
-    todoBtn.appendChild(completedBtn);
+    let todoItem = document.createElement('button');
+    todoItem.classList.add('todo-item');
+    todoList.appendChild(todoItem);
 
-    let nameContainer = document.createElement('div');
-    nameContainer.classList.add('name');
-    todoBtn.appendChild(nameContainer);
+    let infoDiv = todoInfo(title, completed, important, 
+        todo.toggleIsComplete, 
+        todo.toggleIsImportant, 
+        () => {
+            todoList.removeChild(todoItem);
+            removeTodo(todo);
+        }
+    );
+    todoItem.appendChild(infoDiv);
 
-    let name = document.createElement('div');
-    name.textContent = todo.getTitle();
-    nameContainer.appendChild(name);
-    
-    let importantBtn = importantButton(todo.getImportant(), todo.toggleIsImportant);
-    todoBtn.appendChild(importantBtn);
+    let editForm = todoEdit(title, description, date, todo.update);
+    todoItem.appendChild(editForm);
 
-    let onDeleteBtnClicked = () => {
-        removeTodo(todo);
-        todos.removeChild(todoBtn);
-    }
-    let deleteBtn = deleteButton(onDeleteBtnClicked);
-    todoBtn.appendChild(deleteBtn);
+    todoItem.addEventListener('click', () => {
+        infoDiv.classList.toggle('hidden');
+        editForm.classList.toggle('hidden');
+    });
 }
 
 export { constructPageLayout, populateSidebar, populateTodoList };

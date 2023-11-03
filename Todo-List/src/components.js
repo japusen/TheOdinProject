@@ -18,7 +18,8 @@ function toggleIconButton(boolean, toggleFunction, trueIconName, falseIconName) 
     (boolean) ? falseIcon.classList.add('hidden') :
                 trueIcon.classList.add('hidden');
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        e.stopPropagation();
         toggleFunction();
         trueIcon.classList.toggle('hidden');
         falseIcon.classList.toggle('hidden');
@@ -69,4 +70,36 @@ function addTodoButton(addFunction) {
     return actionIconButton('add_circle_outlined', addFunction);
 }
 
-export { importantButton, completedButton, deleteButton, addTodoButton };
+function todoInfo(title, completed, important, toggleIsComplete, toggleIsImportant, remove) {
+    let div = document.createElement('div');
+    div.classList.add('todo-info');
+    
+    let completedBtn = completedButton(completed, toggleIsComplete);
+    div.appendChild(completedBtn);
+
+    let nameContainer = document.createElement('div');
+    nameContainer.classList.add('name');
+    div.appendChild(nameContainer);
+
+    let name = document.createElement('div');
+    name.textContent = title;
+    nameContainer.appendChild(name);
+    
+    let importantBtn = importantButton(important, toggleIsImportant);
+    div.appendChild(importantBtn);
+
+    let deleteBtn = deleteButton(remove);
+    div.appendChild(deleteBtn);
+
+    return div;
+}
+
+function todoEdit(title, description, date, updateTodo) {
+    let form = document.createElement('form');
+    form.classList.add('todo-edit', 'hidden');
+    form.textContent = 'hello';
+
+    return form;
+}
+
+export { todoInfo, todoEdit, addTodoButton };
