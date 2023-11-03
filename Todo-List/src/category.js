@@ -17,17 +17,10 @@ function createCategory (name) {
         }
     }
 
-    const toggleIsComplete = (todo) => {
-        const index = todoList.indexOf(todo);
-        if (index > -1) {
-            todo.toggleIsComplete();
-        }
-    }
-
     // Get List of Todos
     const getTodoList = () => todoList
 
-    return { name, addTodo, removeTodo, toggleIsComplete, getTodoList};
+    return { name, addTodo, removeTodo, getTodoList};
 }
 
 export { createCategory };

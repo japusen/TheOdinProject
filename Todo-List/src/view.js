@@ -97,11 +97,11 @@ function displayTodo(todo, removeTodo) {
     let importantBtn = importantButton(todo.getImportant(), todo.toggleIsImportant);
     todoBtn.appendChild(importantBtn);
 
-    let remove = () => {
+    let onDeleteBtnClicked = () => {
         removeTodo(todo);
         todos.removeChild(todoBtn);
     }
-    let deleteBtn = deleteButton(remove);
+    let deleteBtn = deleteButton(onDeleteBtnClicked);
     todoBtn.appendChild(deleteBtn);
 }
 

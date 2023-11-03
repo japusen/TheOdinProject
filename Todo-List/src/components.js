@@ -66,7 +66,7 @@ function deleteButton(deleteFunction) {
 }
 
 function addTodoButton(addFunction) {
-    return actionIconButton('add_box', addFunction);
+    return actionIconButton('add_circle_outlined', addFunction);
 }
 
 export { importantButton, completedButton, deleteButton, addTodoButton };
