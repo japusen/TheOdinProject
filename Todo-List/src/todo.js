@@ -14,7 +14,6 @@ function createTodo (title, description, dueDate, isImportant) {
         setTitle(title);
         setDescription(description);
         setDueDate(date);
-        console.log(`${title} ${description} ${date}`);
     }
 
     return { 

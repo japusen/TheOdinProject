@@ -103,6 +103,8 @@ function displayTodo(todo, removeTodo) {
         infoDiv.classList.toggle('hidden');
         editForm.classList.toggle('hidden');
         todo.update(title, description, date);
+
+        infoDiv.childNodes[1].firstChild.textContent = title;
     });
     todoItem.appendChild(editForm);
 
