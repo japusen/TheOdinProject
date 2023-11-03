@@ -99,7 +99,11 @@ function displayTodo(todo, removeTodo) {
     );
     todoItem.appendChild(infoDiv);
 
-    let editForm = todoEdit(title, description, date, todo.update);
+    let editForm = todoEdit(title, description, date, (title, description, date) => {
+        infoDiv.classList.toggle('hidden');
+        editForm.classList.toggle('hidden');
+        todo.update(title, description, date);
+    });
     todoItem.appendChild(editForm);
 
     todoItem.addEventListener('click', () => {

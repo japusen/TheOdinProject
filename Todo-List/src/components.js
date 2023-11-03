@@ -94,10 +94,63 @@ function todoInfo(title, completed, important, toggleIsComplete, toggleIsImporta
     return div;
 }
 
-function todoEdit(title, description, date, updateTodo) {
+function todoEdit(title, description, date, update) {
     let form = document.createElement('form');
     form.classList.add('todo-edit', 'hidden');
-    form.textContent = 'hello';
+
+    let titleLabel = document.createElement('label');
+    titleLabel.htmlFor = 'title';
+    titleLabel.textContent = 'Title';
+    let titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.value = title;
+    titleInput.id = 'title';
+    titleInput.onkeyup = (e) => e.preventDefault();
+    titleInput.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    form.appendChild(titleLabel);
+    form.appendChild(titleInput);
+
+    let descriptionLabel = document.createElement('label');
+    descriptionLabel.htmlFor = 'description';
+    descriptionLabel.textContent = 'Description';
+    let descriptionTextArea = document.createElement('textarea');
+    descriptionTextArea.value = (description) ? description : "";
+    descriptionTextArea.id = 'description';
+    descriptionTextArea.onkeyup = (e) => e.preventDefault();
+    descriptionTextArea.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    form.appendChild(descriptionLabel);
+    form.appendChild(descriptionTextArea);
+
+    let dateLabel = document.createElement('label');
+    dateLabel.htmlFor = 'date';
+    dateLabel.textContent = 'Date';
+    let dateInput = document.createElement('input');
+    dateInput.value = date;
+    dateInput.type = 'date';
+    dateInput.id = 'date';
+    dateInput.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    form.appendChild(dateLabel);
+    form.appendChild(dateInput);
+
+    let submitBtn = document.createElement('button');
+    submitBtn.classList.add('submit');
+    submitBtn.textContent = 'Update ToDo';
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        update(titleInput.value, descriptionTextArea.value, dateInput.value);
+    });
+
+    form.appendChild(submitBtn);
 
     return form;
 }

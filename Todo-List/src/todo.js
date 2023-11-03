@@ -13,7 +13,8 @@ function createTodo (title, description, dueDate, isImportant) {
     const update = (title, description, date) => {
         setTitle(title);
         setDescription(description);
-        setDueDate(date);        
+        setDueDate(date);
+        console.log(`${title} ${description} ${date}`);
     }
 
     return { 
