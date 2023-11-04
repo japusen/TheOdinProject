@@ -23,10 +23,19 @@ const getForecast = async (city, numDays) => {
             mode: "cors",
         });
         const data = await response.json();
-        console.log(data);
+        return {
+            location: data.location,
+            current: data.current,
+            forecast: data.forecast.forecastday,
+        };
     } catch (error) {
         console.log("Something went wrong");
     }
 };
 
-getForecast("Cerritos", 7);
+getCurrentWeather("Cerritos");
+
+const { location, current, forecast } = await getForecast("Cerritos", 7);
+console.log(location);
+console.log(current);
+console.log(forecast);
